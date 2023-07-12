@@ -31,7 +31,10 @@ while running:
     pygame.draw.circle(screen, "red", circle_pos, circle_radius )
 
     # tutaj matma :D
-    circle_pos.y += 1
+
+    circle_pos.y += 5
+    if circle_pos.y > screen.get_height()-circle_radius:
+        circle_pos.y = screen.get_height()-circle_radius
 
 
 
