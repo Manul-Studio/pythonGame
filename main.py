@@ -16,6 +16,7 @@ start_y = screen.get_height() / 2
 circle_radius = 120
 
 circle_pos = pygame.Vector2( start_x, start_y)
+move = 5
 
 while running:
     # poll for events
@@ -32,9 +33,19 @@ while running:
 
     # tutaj matma :D
 
-    circle_pos.y += 5
-    if circle_pos.y > screen.get_height()-circle_radius:
+    circle_pos.y += move
+
+    if circle_pos.y >= screen.get_height()-circle_radius:
         circle_pos.y = screen.get_height()-circle_radius
+        move *= -1
+    if circle_pos.y <= 0+circle_radius:
+        circle_pos.y = 0+circle_radius
+        move *= -1
+
+
+
+
+
 
 
 
