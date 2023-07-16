@@ -11,13 +11,43 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
-start_x = screen.get_width() / 2
-start_y = screen.get_height() / 2
-circle_radius = 120
 
-circle_pos = pygame.Vector2( start_x, start_y)
-move_y = 5
-move_x = 8
+class Circle:
+
+    def __init__(self):
+        self.circle_radius = 120
+        self.start_x = screen.get_width() / 2
+        self.start_y = screen.get_width() / 2
+        self.circle_pos = pygame.Vector2(self.start_x, self.start_y)
+        self.move = pygame.Vector2(8,5)
+
+    def update(self):
+        self.circle_pos.y += self.move[1]
+        self.circle_pos.x += self.move[0]
+
+        if self.circle_pos.y >= screen.get_height() - self.circle_radius:
+            self.circle_pos.y = screen.get_height() - self.circle_radius
+
+            self.move[1] *= -1
+        if self.circle_pos.y <= 0 + self.circle_radius:
+            self.circle_pos.y = 0 + self.circle_radius
+
+            self.move[1] *= -1
+
+        if self.circle_pos.x >= screen.get_width() - self.circle_radius:
+            self.circle_pos.x = screen.get_width() - self.circle_radius
+
+            self.move[0] *= -1
+        if self.circle_pos.x <= 0 + self.circle_radius:
+            self.circle_pos.x = 0 + self.circle_radius
+
+            self.move[0] *= -1
+
+    def draw(self):
+        pygame.draw.circle(screen, 'red', self.circle_pos, self.circle_radius)
+
+
+circle = Circle()
 
 while running:
     # poll for events
@@ -29,34 +59,8 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
 
-    # RENDER YOUR GAME HERE
-    pygame.draw.circle(screen, "red", circle_pos, circle_radius )
-
-    # tutaj matma :D
-
-    circle_pos.y += move_y
-    circle_pos.x += move_x
-
-    if circle_pos.y >= screen.get_height()-circle_radius:
-        circle_pos.y = screen.get_height()-circle_radius
-        move_y *= -1
-    if circle_pos.y <= 0+circle_radius:
-        circle_pos.y = 0+circle_radius
-        move_y *= -1
-
-    if circle_pos.x >= screen.get_width()-circle_radius:
-        circle_pos.x = screen.get_width()-circle_radius
-        move_x *=-1
-    if circle_pos.x <= 0+circle_radius:
-        circle_pos.x = 0+circle_radius
-        move_x *=-1
-
-
-
-
-
-
-
+    circle.draw()
+    circle.update()
 
     # flip() the display to put your work on screen
     pygame.display.flip()
@@ -67,6 +71,13 @@ pygame.quit()
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print( 'hello!' )
+    print('hello!')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+
+'''A jesteś w stanie move przerobić na vector2 z pyGame
+I potem spróbować stworzyć klase reprezentująca okrąg?
+Musi mieć dwie metody (może więcej)
+Ale potrzebował bym metody update() w której by było liczone gdzie okrąg ma być
+Oraz metody draw() która narysowała by okrąg w pozycji zaktualizowanej po działaniu update()'''
