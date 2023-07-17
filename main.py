@@ -12,8 +12,11 @@ screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
+circle_pos = pygame.Vector2(screen.get_height() /2,screen.get_height() /2)
 
-circle = Circle(screen)
+
+circles = [Circle(120, circle_pos, pygame.Vector2(1,1)), Circle(120, circle_pos, pygame.Vector2(6,4)),
+           Circle(120, circle_pos, pygame.Vector2(4,6))]
 
 while running:
     # poll for events
@@ -25,8 +28,9 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
 
-    circle.draw(screen)
-    circle.update(screen)
+    for circle in circles:
+        circle.update(screen)
+        circle.draw(screen)
 
     # flip() the display to put your work on screen
     pygame.display.flip()
@@ -42,11 +46,6 @@ if __name__ == '__main__':
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
 
-'''jedyne co to start_x/y bym w ogole nie przechowywal
-a jak juz chcial to tak samo jak pozycje czyli vector2
-no i fajnie by było jak by Circle bylo w osobnym pliku
-no i jak to sie ogarnie to
-kolejna czesc zadania
-to zrobic
+'''
 tablice zawierajace kola
 i zrobic w petli update() i draw()'''
