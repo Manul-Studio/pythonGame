@@ -3,10 +3,11 @@ import pygame
 
 class Circle:
 
-    def __init__(self, circle_radius, circle_pos, move):
+    def __init__(self, circle_radius, circle_pos, move,color):
         self.circle_radius = circle_radius
         self.circle_pos = circle_pos
         self.move = move
+        self.color = color
 
     def update(self, screen):
         self.circle_pos.y += self.move[1]
@@ -31,4 +32,5 @@ class Circle:
             self.move[0] *= -1
 
     def draw(self, screen):
-        pygame.draw.circle(screen, 'red', self.circle_pos, self.circle_radius)
+        pygame.draw.circle(screen, self.color, self.circle_pos, self.circle_radius)
+

@@ -6,17 +6,24 @@
 # Example file showing a basic pygame "game loop"
 import pygame
 from circle import Circle
-
+import random
+import copy
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True
 
-circle_pos = pygame.Vector2(screen.get_height() /2,screen.get_height() /2)
+circle_pos = pygame.Vector2(screen.get_width(), screen.get_height())
+circle_pos = circle_pos/2
 
 
-circles = [Circle(120, circle_pos, pygame.Vector2(1,1)), Circle(120, circle_pos, pygame.Vector2(6,4)),
-           Circle(120, circle_pos, pygame.Vector2(4,6))]
+circles = []
+
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, 5), 'pink'))
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, 5), 'pink'))
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, -5), 'pink'))
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, -5), 'pink'))
+
 
 while running:
     # poll for events
@@ -46,6 +53,4 @@ if __name__ == '__main__':
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
 
 
-'''
-tablice zawierajace kola
-i zrobic w petli update() i draw()'''
+
