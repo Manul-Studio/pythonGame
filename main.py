@@ -20,9 +20,9 @@ circle_pos = circle_pos/2
 circles = []
 
 circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, 5), 'pink'))
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, 5), 'pink'))
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, -5), 'pink'))
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, -5), 'pink'))
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, 5), 'red'))
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, -5), 'green'))
+circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, -5), 'blue'))
 
 
 while running:
