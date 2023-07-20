@@ -6,8 +6,9 @@
 # Example file showing a basic pygame "game loop"
 import pygame
 from circle import Circle
-import random
+from paletka import Paletka
 import copy
+
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
@@ -15,15 +16,15 @@ running = True
 
 circle_pos = pygame.Vector2(screen.get_width(), screen.get_height())
 circle_pos = circle_pos/2
+width = 40
+height = 40
+circle = Circle(circle_pos, width, height, pygame.Vector2(15, 15), 'pink')
 
+rect_pos_left = pygame.Vector2(0, screen.get_height()/2)
+paletka_left = Paletka(30, 400, 'red', rect_pos_left,5)
 
-circles = []
-
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, 5), 'pink'))
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, 5), 'red'))
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(-5, -5), 'green'))
-circles.append(Circle(120, copy.copy(circle_pos), pygame.Vector2(5, -5), 'blue'))
-
+rect_pos_right = pygame.Vector2(screen.get_width()-30, screen.get_height() /2)
+paletka_right = Paletka(30, 400, 'blue', rect_pos_right,7)
 
 while running:
     # poll for events
@@ -34,10 +35,15 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
+    circle.update(screen)
+    circle.collision(paletka_right, paletka_left)
+    circle.draw(screen)
 
-    for circle in circles:
-        circle.update(screen)
-        circle.draw(screen)
+    paletka_left.draw(screen)
+    paletka_right.draw(screen)
+    paletka_left.update(screen)
+    paletka_right.update(screen)
+
 
     # flip() the display to put your work on screen
     pygame.display.flip()
@@ -51,6 +57,5 @@ if __name__ == '__main__':
     print('hello!')
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
 
 
