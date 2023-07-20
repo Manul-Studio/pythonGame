@@ -12,8 +12,8 @@ class Paletka:
         self.paletka = pygame.Rect(self.rect_pos, (self.width, self.height))
 
     def update_right(self, screen):
-
         k = pygame.key.get_pressed()
+
         if k[pygame.K_UP]:
             self.paletka.y -=self.move[1]
         if k[pygame.K_DOWN]:
@@ -25,9 +25,10 @@ class Paletka:
         if self.paletka.y <= 0:
             self.paletka.y = 0
 
-    def update_left(self, screen):
 
+    def update_left(self, screen):
         k = pygame.key.get_pressed()
+
         if k[pygame.K_w]:
             self.paletka.y -= self.move[1]
         if k[pygame.K_s]:
