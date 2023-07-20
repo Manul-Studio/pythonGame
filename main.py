@@ -21,10 +21,10 @@ height = 40
 circle = Circle(circle_pos, width, height, pygame.Vector2(15, 15), 'pink')
 
 rect_pos_left = pygame.Vector2(0, screen.get_height()/2)
-paletka_left = Paletka(30, 400, 'red', rect_pos_left,5)
+paletka_left = Paletka(30, 400, 'red', rect_pos_left,pygame.Vector2(0, 5))
 
 rect_pos_right = pygame.Vector2(screen.get_width()-30, screen.get_height() /2)
-paletka_right = Paletka(30, 400, 'blue', rect_pos_right,7)
+paletka_right = Paletka(30, 400, 'blue', rect_pos_right,pygame.Vector2(0, 7))
 
 while running:
     # poll for events
@@ -32,6 +32,7 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
@@ -41,8 +42,8 @@ while running:
 
     paletka_left.draw(screen)
     paletka_right.draw(screen)
-    paletka_left.update(screen)
-    paletka_right.update(screen)
+    paletka_left.update_left(screen)
+    paletka_right.update_right(screen)
 
 
     # flip() the display to put your work on screen
