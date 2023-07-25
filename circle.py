@@ -13,11 +13,11 @@ class Circle:
         self.score_l = 0
         self.score_r = 0
 
-    def score_update(self,screen):
+    def score_update(self, screen):
         if self.ball.x >= screen.get_width() - self.width:
-            self.score_l +=1
+            self.score_l += 1
 
-        if self.ball.x <=0:
+        if self.ball.x <= 0:
             self.score_r += 1
 
     def score_show(self, circle, test_font, screen):
@@ -55,9 +55,29 @@ class Circle:
 
     def collision(self, paletka_right, paletka_left):
 
-        if self.ball.colliderect(paletka_right.paletka) or self.ball.colliderect(paletka_left.paletka):
-            self.move[0] *= -1
+        self.collision_tolerance = 10
 
+        if self.ball.colliderect(paletka_right.paletka):
+            if abs(paletka_right.paletka.top - self.ball.bottom) < self.collision_tolerance and self.move[1] >0:
+                self.move[1] *= -1
+            if abs(paletka_right.paletka.bottom - self.ball.top) < self.collision_tolerance and self.move[1] <0:
+                self.move[1] *= -1
+            if abs(paletka_right.paletka.right - self.ball.left) < self.collision_tolerance and self.move[0] <0:
+                self.move[0] *= -1
+            if abs(paletka_right.paletka.left - self.ball.right) < self.collision_tolerance and self.move[0] >0:
+                self.move[0] *= -1
+
+
+        if self.ball.colliderect(paletka_left.paletka):
+
+            if abs(paletka_left.paletka.top - self.ball.bottom) < self.collision_tolerance and self.move[1] > 0:
+                self.move[1] *= -1
+            if abs(paletka_left.paletka.bottom - self.ball.top) < self.collision_tolerance and self.move[1] < 0:
+                self.move[1] *= -1
+            if abs(paletka_left.paletka.right - self.ball.left) < self.collision_tolerance and self.move[0] < 0:
+                self.move[0] *= -1
+            if abs(paletka_left.paletka.left - self.ball.right) < self.collision_tolerance and self.move[0] > 0:
+                self.move[0] *= -1
 
 
     def draw(self, screen):

@@ -18,7 +18,7 @@ circle_pos = pygame.Vector2(screen.get_width(), screen.get_height())
 circle_pos = circle_pos/2
 width = 40
 height = 40
-circle = Circle(circle_pos, width, height, pygame.Vector2(15, 15), 'pink')
+circle = Circle(circle_pos, width, height, pygame.Vector2(6, 6), 'pink')
 
 rect_pos_left = pygame.Vector2(0, screen.get_height()/2)
 paletka_left = Paletka(30, 200, 'red', rect_pos_left, pygame.Vector2(0, 15))
@@ -51,6 +51,9 @@ while running:
     paletka_left.update_left(screen)
     paletka_right.update_right(screen)
 
+    fps = str(int(clock.get_fps()))
+    fps_show = test_font.render('fps: ' + fps, True, 'Black')
+    screen.blit(fps_show, (20, 0))
 
 
     # flip() the display to put your work on screen
