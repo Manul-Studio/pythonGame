@@ -13,7 +13,7 @@ class Rects:
 
     def move(self):
         self.rect.x += self.speed[0]
-        self.rect.y +=self.speed[1]
+        self.rect.y += self.speed[1]
 
     def update(self, screen):
         if self.rect.x <= 0:

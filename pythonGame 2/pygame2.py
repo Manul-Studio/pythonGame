@@ -16,7 +16,7 @@ speed1 = [6 , 0]
 rect_pos1 = pygame.Vector2(300, 300)
 rect_1 = Rects(rect_pos1, 100, 100, speed1,  'red')
 
-speed2 = [7,0]
+speed2 = [6,0]
 rect_pos2 = pygame.Vector2(700, 300)
 rect_2 = Rects(rect_pos2, 100, 100,speed2, 'blue')
 
@@ -39,20 +39,21 @@ while running:
         rect_1.speed[0] = 0
     else:
         rect_1.move()
-    if rect_1.speed[0]==0:
+        rect_1.update(screen)
+
+    if rect_1.speed[0] == 0:
         rect_2.move()
         rect_2.update(screen)
 
-    if rect_2.collision(rect_1) and rect_1.speed[0] ==0:
+    if rect_2.collision(rect_1) and rect_1.speed[0] == 0:
         rect_2.speed[0] = 0
         rect_1.speed[0] = -6
-
-    if rect_2.speed[0]==0:
         rect_1.move()
-        rect_1.update(screen)
 
-
-
+    if rect_1.collision(rect_2) and rect_2.speed[0] == 0:
+        rect_1.speed[0] = 0
+        rect_2.speed[0] = 6
+        rect_2.move()
 
 
 
