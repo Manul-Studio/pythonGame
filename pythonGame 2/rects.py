@@ -8,7 +8,6 @@ class Rects:
         self.rect_height = rect_height
         self.speed= speed
         self.color = color
-
         self.rect = pygame.Rect(self.rect_pos, (self.rect_width, self.rect_height))
 
     def move(self):
@@ -25,8 +24,6 @@ class Rects:
 
     def collision(self, other):
         return self.rect.colliderect(other.rect)
-
-
 
 
     def draw(self, screen):
