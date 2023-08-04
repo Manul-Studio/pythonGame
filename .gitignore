@@ -1,2 +1,4 @@
 /.idea/
 /venv/
+/__pycache__/
+/pythonGame 2/__pycache__/
